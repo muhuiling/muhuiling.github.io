@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>牟惠玲的第一篇博客吖！ | welcome mu&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="牟惠玲的第一篇博客吖！ | welcome mu&#39;s blog">
+  <title>推送mes消息时,根据需要推送的明细中含有几个工序数据进而推送几次遇到的问题 | welcome mu&#39;s blog</title>
+  <meta name="keywords" content=" 问题合集 ">
+  <meta name="description" content="推送mes消息时,根据需要推送的明细中含有几个工序数据进而推送几次遇到的问题 | welcome mu&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="解决思路：一开始是想通过for循环来获取工序字段下的值，从而形成多组数据，但是没有想好如何去实现get到工序字段的值后进行for循环，主要是没想到把工序的值作为数组循环，只觉得工序就只是一个值，好像没办法循环。之后是想根据逗号分割来获取逗号前的一条数据，之后再获取逗号后的数据，形成两个字段。然后在list中add两个map，推送的json就会收到两组数据，涛哥问万一工序写了三个，四个怎么处理？(P">
 <meta property="og:type" content="article">
@@ -244,19 +244,26 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-牟惠玲的第一篇博客吖！" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-推送mes消息时-根据需要推送的明细中含有几个工序数据进而推送几次遇到的问题" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">牟惠玲的第一篇博客吖！</h1>
+        <h1 class="article-title">推送mes消息时,根据需要推送的明细中含有几个工序数据进而推送几次遇到的问题</h1>
     
     <div class="article-meta">
         
         
         
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">问题合集</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-11-07 11:26:12'>2022-11-07 11:18</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-13 21:03:49'>2022-11-12 21:19</time>
         
     </div>
     <div class="article-meta">
@@ -294,9 +301,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>just for test..</p>
-</blockquote>
+        <p>解决思路：<br>一开始是想通过for循环来获取工序字段下的值，从而形成多组数据，但是没有想好如何去实现get到工序字段的值后进行for循环，主要是没想到把工序的值作为数组循环，只觉得工序就只是一个值，好像没办法循环。之后是想根据逗号分割来获取逗号前的一条数据，之后再获取逗号后的数据，形成两个字段。然后在list中add两个map，推送的json就会收到两组数据，涛哥问万一工序写了三个，四个怎么处理？(PS:emmm,不是没想到，是看了几个正式环境中的单子后发现好像最多只有两个工序。)<br>解决方案：<br>把通过”,”分隔开获取到的工序的值定义一个数组(自己没想到把工序定义成一个数组)，然后遍历，依次形成map,放进list中，这样就可以实现有几个工序就会推送几条信息啦！！<br><img src="/.com//%E9%94%99%E8%AF%AF4.png" alt="实现"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(sellorderBomDetail.<span class="title function_">getGongxuname</span>()!=<span class="literal">null</span> &amp;&amp; sellorderBomDetail.<span class="title function_">getGongxuname</span>().<span class="title function_">contains</span>(<span class="string">&quot;,&quot;</span>))&#123;<span class="comment">//工序是否有&quot;,&quot;</span></span><br><span class="line">   <span class="title class_">String</span>[] gongxunameArray = sellorderBomDetail.<span class="title function_">getGongxuname</span>().<span class="title function_">split</span>(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            <span class="keyword">for</span> (<span class="title class_">String</span> gongxuname : gongxunameArray) &#123;</span><br><span class="line">			    <span class="title class_">Map</span>&lt;<span class="title class_">String</span>,<span class="title class_">Object</span>&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;OrderNo&quot;</span>, paiChanzx.<span class="title function_">getNo</span>()); <span class="comment">// ERP计划单号</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;MaterialCode&quot;</span>, sellorderBomDetail.<span class="title function_">getGcid</span>()); <span class="comment">// 物料编码</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;Qty&quot;</span>, sellorderBomDetail.<span class="title function_">getCgnum</span>()); <span class="comment">// 单位用量（bom采购用量）</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;QtyUnit&quot;</span>, sellorderBomDetail.<span class="title function_">getCgnumunit</span>()); <span class="comment">// 采购单位</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;StandardQty&quot;</span>, sellorderBomDetail.<span class="title function_">getNormnum</span>()); <span class="comment">// bom标准用量</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;StandardUnit&quot;</span>, sellorderBomDetail.<span class="title function_">getNormnumunit</span>()); <span class="comment">// 标准用量单位</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;Operation&quot;</span>, sellorderBomDetail.<span class="title function_">getGongxucode</span>()); <span class="comment">// 工序</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;Gongxu&quot;</span>,gongxuname); <span class="comment">// 工序1</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;OrderType&quot;</span>, planType); <span class="comment">// 计划类型</span></span><br><span class="line">				map.<span class="title function_">put</span>(<span class="string">&quot;RoutingType&quot;</span>, routingType); <span class="comment">// 工艺分类</span></span><br><span class="line">				list.<span class="title function_">add</span>(map);</span><br><span class="line">			&#125;</span><br></pre></td></tr></table></figure>
+
+
 
       
        

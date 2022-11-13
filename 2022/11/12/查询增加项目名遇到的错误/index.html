@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>牟惠玲的第一篇博客吖！ | welcome mu&#39;s blog</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="牟惠玲的第一篇博客吖！ | welcome mu&#39;s blog">
+  <title>查询增加项目名遇到的错误 | welcome mu&#39;s blog</title>
+  <meta name="keywords" content=" 问题合集 ">
+  <meta name="description" content="查询增加项目名遇到的错误 | welcome mu&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="解决思路：一开始是想通过for循环来获取工序字段下的值，从而形成多组数据，但是没有想好如何去实现get到工序字段的值后进行for循环，主要是没想到把工序的值作为数组循环，只觉得工序就只是一个值，好像没办法循环。之后是想根据逗号分割来获取逗号前的一条数据，之后再获取逗号后的数据，形成两个字段。然后在list中add两个map，推送的json就会收到两组数据，涛哥问万一工序写了三个，四个怎么处理？(P">
 <meta property="og:type" content="article">
@@ -244,19 +244,26 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-牟惠玲的第一篇博客吖！" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-查询增加项目名遇到的错误" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">牟惠玲的第一篇博客吖！</h1>
+        <h1 class="article-title">查询增加项目名遇到的错误</h1>
     
     <div class="article-meta">
         
         
         
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">问题合集</a>
+            
+        </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-11-07 11:26:12'>2022-11-07 11:18</time>
+            发布时间 : <time class="date" title='最后更新: 2022-11-13 21:04:09'>2022-11-12 19:35</time>
         
     </div>
     <div class="article-meta">
@@ -294,9 +301,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>just for test..</p>
-</blockquote>
+        <p><img src="/.com//%E9%94%99%E8%AF%AF1.png" alt="查询项目名遇到的错误"><br>解决思路：一开始查看控制台的错误，百度了一下：问题一般在JSON.parse()中，JSON.parse()用于从一个字符串中解析出json对象，如果是Object类型，说明无需转换。JSON.parse()首先会默认利用toString()方法转为string,结果为”[object Object]”,所以才会抛出上图的错误。<br>但是我前台传的值定义是String类型，所以排除以上错误原因，查看后端报错发现提示是pj.name,xml文件中pro.name projectname但是在过滤list中，projectname字段对应的是pj.name。</p>
+<p>解决办法：将查询的sql语句中的pro.name修改为pj.name ,相应的连接的表修改名为pj,之后就可以正常查询项目名了；</p>
+<pre><code class="js">        pj.`name` projectname
+
+        LEFT JOIN project pj ON pj.id = zhu.projectid
+        
+``
+
+</code></pre>
 
       
        

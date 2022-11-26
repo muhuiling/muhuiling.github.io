@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>setinterval和settimeout的区别 | welcome mu&#39;s blog</title>
-  <meta name="keywords" content=" 问题合集 ">
-  <meta name="description" content="setinterval和settimeout的区别 | welcome mu&#39;s blog">
+  <title>运维遇到的问题① | welcome mu&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="运维遇到的问题① | welcome mu&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="需求：新建品名为冲压小件的排产单后，右键引排产单明细时，查询的字段的显示：如果品名是冲压小件的，添加弹窗只显示编号，长度，展宽，厚度及块数（且编号与厚度不必填） 解决方案：使用clearValidators()：清空同步验证器列表及updateValueAndValidity()：重新计算控件的值和验证状态。注:在运行时添加或删除验证器时，必须调用 updateValueAndValidity()">
 <meta property="og:type" content="article">
@@ -280,26 +280,19 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-setinterval和settimeout的区别" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-运维遇到的问题①" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">setinterval和settimeout的区别</h1>
+        <h1 class="article-title">运维遇到的问题①</h1>
     
     <div class="article-meta">
         
         
         
-        
-        <span class="tag">
-            <i class="iconfont icon-tag"></i>
-            
-            <a class="color5">问题合集</a>
-            
-        </span>
         
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2022-11-14 08:28:29'>2022-11-12 20:59</time>
+            Created At : <time class="date" title='Updated At: 2022-11-25 13:05:39'>2022-11-25 11:47</time>
         
     </div>
     <div class="article-meta">
@@ -321,7 +314,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%84%E7%90%86%E8%BF%90%E7%BB%B4%E9%97%AE%E9%A2%98%E6%97%B6%EF%BC%8Cerp%E5%BE%80wms%E6%8E%A8%E9%80%81%E5%8F%91%E8%B4%A7%E9%80%9A%E7%9F%A5%EF%BC%8C%E6%8E%A8%E9%80%81%E7%9A%84%E6%8A%A5%E6%96%87%E4%B8%AD%EF%BC%8C%E5%A4%9A%E6%98%BE%E7%A4%BA%E4%BA%86temporaryWarehouse%E5%92%8CtemporaryWarehouseName%E5%AD%97%E6%AE%B5%E7%9A%84%E5%80%BC%E3%80%82"><span class="toc-text">处理运维问题时，erp往wms推送发货通知，推送的报文中，多显示了temporaryWarehouse和temporaryWarehouseName字段的值。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="toc-text">解决方案：</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -337,7 +330,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2022/11/12/setinterval%E5%92%8Csettimeout%E7%9A%84%E5%8C%BA%E5%88%AB/pic/%E9%94%99%E8%AF%AF3.png" alt="展厅程序中在车间直播获取时间时用到setinterval"><br>在查找直播时间有延迟问题是查询了一下setInterval,其弊端：<br>1.setInterval对自己调用的代码是否报错漠不关心。即使调用的代码报错了，它依然会持续的调用下去<br>2.setInterval无视网络延迟。在使用ajax轮询服务器是否有新数据时，必定会有一些人会使用setInterval，然而无论网络状况如何，它都会去一遍又一遍的发送请求，如果网络状况不良，一个请求发出，还没有返回结果，它会坚持不懈的继续发送请求，最后导致的结果就是请求堆积。<br>3.setInterval并不定时。如果它调用的代码执行的时间小于定时的时间，它会跳过调用，这就导致无法按照你需要的执行次数或无法得到你想要的结果。<br>解决方案：<br>使用setTimeout代替setInterval。<br>可以给setTimeout设置时间后，在最后调用自身。如果希望“匀速”触发。可以计算代码执行时间，用希望的延迟减去上次执行的时间。</p>
+        <h5 id="处理运维问题时，erp往wms推送发货通知，推送的报文中，多显示了temporaryWarehouse和temporaryWarehouseName字段的值。"><a href="#处理运维问题时，erp往wms推送发货通知，推送的报文中，多显示了temporaryWarehouse和temporaryWarehouseName字段的值。" class="headerlink" title="处理运维问题时，erp往wms推送发货通知，推送的报文中，多显示了temporaryWarehouse和temporaryWarehouseName字段的值。"></a>处理运维问题时，erp往wms推送发货通知，推送的报文中，多显示了temporaryWarehouse和temporaryWarehouseName字段的值。</h5><p><img src="/2022/11/25/%E8%BF%90%E7%BB%B4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E2%91%A0/1.png" alt="推送的报文信息"><br><img src="/2022/11/25/%E8%BF%90%E7%BB%B4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E2%91%A0/2.png" alt="发货通知单的明细"><br><img src="/2022/11/25/%E8%BF%90%E7%BB%B4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E2%91%A0/3.png"><br>由于这个发货通知单遍历第四条明细时，该单子的第三条明细的仓库是临时库，第四条明细的临时库字段显示第三条明细的临时库字段，因为遍历第四条明细时，临时库没有重新获取到值，所以推送的时候，第四条明细的报文推送了temporaryWarehouse和temporaryWarehouseName字段的值。</p>
+<h5 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h5><p>添加不是临时库的将temporaryWarehouse和temporaryWarehouseName字段的值赋值空字符串；<br><img src="/2022/11/25/%E8%BF%90%E7%BB%B4%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E2%91%A0/4.png"></p>
 
       
        
